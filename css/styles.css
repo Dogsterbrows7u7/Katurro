@@ -4391,3 +4391,247 @@ height: 1650px;
     padding: 1rem;
   }
 }
+
+
+/* =========================
+   MAPA DEL TESORO CAFETERO
+========================= */
+
+.mapa-tesoro-main {
+  width: min(1400px, 94%);
+  margin: 0 auto;
+  padding: 3rem 0 5rem;
+}
+
+.mapa-tesoro-head {
+  background: linear-gradient(135deg, #fffaf2, #f3e4cb);
+  border-radius: 30px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.07);
+  text-align: center;
+}
+
+.mapa-tesoro-head h1 {
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  line-height: 0.96;
+  margin-bottom: 1rem;
+}
+
+.mapa-tesoro-intro {
+  color: #52463d;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.experiencia-interactiva {
+  position: relative;
+  min-height: 760px;
+  background: #fffdf9;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(0,0,0,0.08);
+  border: 1px solid rgba(160, 119, 86, 0.12);
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.tesoro-panel {
+  width: min(700px, 88%);
+  background: rgba(255, 253, 249, 0.96);
+  border-radius: 24px;
+  padding: 2.4rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  border: 1px solid rgba(160, 119, 86, 0.12);
+}
+
+.tesoro-panel-intro {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  text-align: center;
+}
+
+.tesoro-panel-intro h2 {
+  margin-bottom: 1rem;
+}
+
+.tesoro-panel-intro p {
+  color: #574b41;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.mapa-full {
+  position: absolute;
+  inset: 0;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.interfaz-juego {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1.4rem;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.info-mision {
+  width: min(860px, 100%);
+  background: rgba(255, 253, 249, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  border: 1px solid rgba(160, 119, 86, 0.12);
+  text-align: center;
+}
+
+.info-mision h3 {
+  color: #6F1D1B;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.info-mision p {
+  color: #4f443b;
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.feedback-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.feedback-card {
+  width: min(720px, 92%);
+  background: #fffdf9;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+  text-align: center;
+}
+
+.feedback-card h2 {
+  margin-bottom: 0.8rem;
+}
+
+.feedback-card p {
+  color: #574b41;
+  line-height: 1.8;
+  margin-bottom: 1.4rem;
+}
+
+.status-icon {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+}
+
+.acciones-tesoro {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-game,
+.btn-game-secondary {
+  border: none;
+  padding: 0.95rem 1.4rem;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.btn-game {
+  background: var(--vino);
+  color: white;
+}
+
+.btn-game:hover {
+  background: #7f0d11;
+  transform: translateY(-2px);
+}
+
+.btn-game-secondary {
+  background: #f0e1c7;
+  color: #5a3b2d;
+}
+
+.btn-game-secondary:hover {
+  background: #e3cfab;
+  transform: translateY(-2px);
+}
+
+/* hotspots del juego */
+.hotspot {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background: rgba(154, 16, 20, 0.88);
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+  transition: transform 0.25s ease, background 0.25s ease;
+  z-index: 6;
+}
+
+.hotspot:hover {
+  transform: scale(1.08);
+  background: #c62024;
+}
+
+@media (max-width: 768px) {
+  .mapa-tesoro-main {
+    width: min(96%, 100%);
+    padding-top: 2rem;
+  }
+
+  .mapa-tesoro-head,
+  .tesoro-panel,
+  .feedback-card {
+    padding: 1.5rem;
+  }
+
+  .experiencia-interactiva {
+    min-height: 620px;
+  }
+
+  .info-mision {
+    padding: 1rem;
+  }
+
+  .hotspot {
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+}
