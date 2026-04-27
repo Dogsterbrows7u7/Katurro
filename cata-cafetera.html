@@ -1,430 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taza Cafetera | Simulador de Cata Sensorial</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Cafetero | Simulador de Cata</title>
 
-    <link rel="icon" href="images/icono.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=4">
-    
-    <style>
-        /* INLINE COMPONENT STYLES FOR CATA SENSORIAL TO PREVENT CACHE */
-        .cata-container {
-            width: 100%;
-            min-height: 80vh;
-            background: linear-gradient(135deg, #FBEED7 0%, #ecd0a4 100%);
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-            padding: 2rem 0;
-        }
-
-        .cata-screen {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(20px);
-        }
-
-        .cata-screen.active {
-            position: relative;
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        #screen-intro .cata-text {
-            color: #fff;
-        }
-
-        .cata-badge {
-            background: #d4a373;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .cata-title {
-            color: #4A1513;
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .cata-text {
-            color: #555;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .btn-cata {
-            background: #6F1D1B;
-            color: white;
-            border: none;
-            padding: 1rem 3rem;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 8px 0 #4A1513, 0 15px 20px rgba(0,0,0,0.2);
-            transition: all 0.2s;
-        }
-
-        .btn-cata:active {
-            transform: translateY(8px);
-            box-shadow: 0 0 0 #4A1513, 0 0 0 rgba(0,0,0,0.2);
-        }
-
-        .btn-cata.outline {
-            background: transparent;
-            color: #6F1D1B;
-            border: 3px solid #6F1D1B;
-            box-shadow: 0 8px 0 #6F1D1B;
-        }
-
-        .btn-cata.outline:active {
-            box-shadow: 0 0 0 #6F1D1B;
-        }
-
-        /* Mission 1 Interactive Elements */
-        .slider-container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .cup-visualization {
-            width: 120px;
-            height: 120px;
-            background: #eee;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            position: relative;
-            border: 8px solid white;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .coffee-liquid {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80%;
-            background: #c39a6b; /* Light coffee */
-            transition: background-color 0.3s ease;
-        }
-
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;
-        }
-
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            background: #6F1D1B;
-            cursor: pointer;
-            margin-top: -10px;
-            box-shadow: 0 4px 10px rgba(111, 29, 27, 0.5);
-        }
-
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 10px;
-            cursor: pointer;
-            background: #d4a373;
-            border-radius: 5px;
-        }
-
-        .labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-weight: 700;
-            color: #4A1513;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .option-btn {
-            background: white;
-            border: 3px solid #d4a373;
-            color: #4A1513;
-            padding: 1rem;
-            border-radius: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1.1rem;
-        }
-
-        .option-btn:hover {
-            background: #d4a373;
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        /* Modal Feedback */
-        .feedback-modal {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 100;
-            backdrop-filter: blur(8px);
-        }
-
-        .feedback-modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .feedback-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 30px;
-            text-align: center;
-            max-width: 450px;
-            transform: scale(0.8);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .feedback-modal.active .feedback-card {
-            transform: scale(1);
-        }
-
-        .feedback-icon {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Mission 2 Interactive Elements */
-        .jars-container {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .jar {
-            width: 130px;
-            height: 160px;
-            background: rgba(255,255,255,0.5);
-            border: 4px solid white;
-            border-radius: 20px 20px 40px 40px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .jar::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 20%;
-            width: 60%;
-            height: 20px;
-            background: #8B4513; /* Cork lid */
-            border-radius: 10px 10px 0 0;
-            transition: transform 0.3s;
-        }
-
-        .jar:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.8);
-        }
-        
-        .jar:hover::before {
-            transform: translateY(-10px) rotate(5deg);
-        }
-
-        .jar-label {
-            position: absolute;
-            bottom: -30px;
-            font-weight: 700;
-            color: #4A1513;
-            font-size: 1rem;
-        }
-    </style>
+  <link rel="icon" href="images/icono.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="hero" style="background: url('images/banner-2.png') center/cover no-repeat;">
-        <nav class="navbar">
-            <ul class="menu nav-menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="historia.html">Historia</a></li>
-                <li><a href="proceso.html">Proceso</a></li>
-                <li><a href="caracteristicas.html">Características</a></li>
-                <li><a href="mapa.html">Mapa</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li class="nav-item-dropdown">
-                    <a href="#" class="nav-link-dropdown">Actividades ▼</a>
-                    <ul class="dropdown-submenu">
-                        <li><a href="actividades.html">Lista de Actividades</a></li>
-                        <li><a href="mapa-tesoro.html">Reto: Mapa del Tesoro</a></li>
-                        <li><a href="cata-cafetera.html">Simulador de Cata</a></li>
-                        <li><a href="formulario.html">Formulario: Taza Cafetera</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header class="hero">
+    <nav class="barra-superior">
+      <a href="index.html" class="logo-link">
+        <img src="images/Logo actualizado (1) (1).png" alt="Código Cafetero" class="logo-nav">
+      </a>
 
-    <main class="container my-5">
-        <div class="row">
-            <div class="col-12 text-center mb-4">
-                <span class="subtitulo" style="color: #6F1D1B; font-weight: 700; text-transform: uppercase;">Actividad Sensorial</span>
-                <h2 class="display-5" style="color: #4A1513; font-weight: 800; font-family: 'Playfair Display', serif;">Laboratorio de Sabores</h2>
-            </div>
+      <ul class="menu">
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="proceso.html">Proceso</a></li>
+        <li><a href="caracteristicas.html">Características</a></li>
+        <li><a href="mapa.html">Mapa</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="actividades.html">Actividades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="cata-main">
+    <section class="cata-head">
+      <span class="subtitulo">Actividad sensorial</span>
+      <h1>Laboratorio de Sabores</h1>
+      <p class="cata-intro">
+        Explora el café desde la percepción, el tueste y el aroma. Observa, compara y responde como un verdadero catador.
+      </p>
+    </section>
+
+    <section class="cata-container">
+
+      <!-- INTRO -->
+      <section id="screen-intro" class="cata-screen active">
+        <span class="cata-badge">Bienvenidos catadores</span>
+        <h2 class="cata-title">Simulador de Cata</h2>
+        <p class="cata-text">
+          Los verdaderos expertos no solo toman café, lo perciben con todos sus sentidos.
+          Prepara tu paladar visual para descubrir los secretos que esconden el tostado y los aromas de nuestra región.
+        </p>
+        <button class="btn-cata" onclick="iniciarJuego()">Ponerse el delantal</button>
+      </section>
+
+      <!-- MISIÓN 1 -->
+      <section id="screen-mision1" class="cata-screen">
+        <span class="cata-badge">Misión 1: El dilema del tinto</span>
+        <h2 class="cata-title">¿Qué hace que un café se sienta “fuerte”?</h2>
+        <p class="cata-text">
+          Mueve el control y observa cómo cambia el color del café. Luego responde cuál factor explica mejor esa sensación.
+        </p>
+
+        <div class="slider-container">
+          <div class="cup-visualization">
+            <div class="coffee-liquid" id="coffee-liquid"></div>
+          </div>
+
+          <input type="range" min="0" max="100" value="0" oninput="actualizarCafe(this.value)">
+
+          <div class="slider-labels">
+            <span>Suave</span>
+            <span>Fuerte</span>
+          </div>
         </div>
 
-        <div class="cata-container" id="app-cata">
-            
-            <!-- PANTALLA 1: INTRO -->
-            <div class="cata-screen active" id="screen-intro">
-                <div class="cata-badge">Bienvenidos Catadores</div>
-                <h1 class="cata-title">Simulador de Cata</h1>
-                <p class="cata-text">Los verdaderos expertos no solo toman café, lo perciben con todos sus sentidos. Prepara tu paladar visual para descubrir los secretos que esconden el tostado y los aromas de nuestra región.</p>
-                <div class="visual-placeholder mb-4"></div>
-                <button class="btn-cata" onclick="iniciarJuego()">PONERSE EL DELANTAL</button>
-            </div>
-
-            <!-- PANTALLA 2: MISIÓN 1 -->
-            <div class="cata-screen" id="screen-mision1">
-                <div class="cata-badge">MISIÓN 1: EL DILEMA DEL TINTO</div>
-                <h2 style="font-size: 2rem; color: #4A1513; font-weight: 700;">A muchos les gusta el café "cargado".</h2>
-                <p class="cata-text mt-2 mb-0">Mueve el control de Suave a Fuerte y descubre cómo cambia la bebida.</p>
-                
-                <div class="slider-container">
-                    <div class="cup-visualization">
-                        <div class="coffee-liquid" id="coffee-liquid"></div>
-                    </div>
-                    <input type="range" min="0" max="100" value="0" id="coffee-slider" oninput="actualizarCafe(this.value)">
-                    <div class="labels">
-                        <span>SUAVE</span>
-                        <span>FUERTE</span>
-                    </div>
-                </div>
-
-                <p style="font-weight: 700; color: #6F1D1B; margin-bottom: 1rem;">Para ti, ¿qué le da esa "fuerza" al sabor?</p>
-                
-                <div class="options-grid">
-                    <button class="option-btn" onclick="verificarRespuesta(1, 'cafeina')">Cafeína</button>
-                    <button class="option-btn" onclick="verificarRespuesta(1, 'tueste')">Tueste</button>
-                    <button class="option-btn" onclick="verificarRespuesta(1, 'agua')">Agua</button>
-                </div>
-            </div>
-
-            <!-- PANTALLA 3: MISIÓN 2 -->
-            <div class="cata-screen" id="screen-mision2">
-                <div class="cata-badge">MISIÓN 2: EL AROMA ESCONDIDO</div>
-                <h2 style="font-size: 2rem; color: #4A1513; font-weight: 700;">El café de verdad huele a campo.</h2>
-                <p class="cata-text mt-2">Nuestros granos especiales del Eje Cafetero suelen tener una acidez brillante y notas dulces naturales. ¿En qué frasco se esconde este aroma?</p>
-                
-                <div class="jars-container">
-                    <div class="jar" onclick="verificarRespuesta(2, 'ceniza')">
-                        <span class="jar-label">Ceniza/Humo</span>
-                    </div>
-                    <div class="jar" onclick="verificarRespuesta(2, 'flor')">
-                        <span class="jar-label">Panela y Flores</span>
-                    </div>
-                    <div class="jar" onclick="verificarRespuesta(2, 'madera')">
-                        <span class="jar-label">Madera Seca</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANTALLA 4: MISIÓN 3 -->
-            <div class="cata-screen" id="screen-mision3">
-                <div class="cata-badge">MISIÓN 3: EL ARTE DEL FILTRADO</div>
-                <h2 style="font-size: 2rem; color: #4A1513; font-weight: 700;">Para no estropear la magia...</h2>
-                <p class="cata-text mt-2">Deseamos mantener la acidez brillante y la dulzura evitando quemar el café al prepararlo. ¿Cuál es el peor enemigo del sabor en este momento?</p>
-                
-                <div class="options-grid" style="margin-top: 2rem;">
-                    <button class="option-btn" onclick="verificarRespuesta(3, 'hirviendo')">Agua Hirviendo (Con burbujas)</button>
-                    <button class="option-btn" onclick="verificarRespuesta(3, 'caliente')">Agua Caliente (Antes de hervir)</button>
-                    <button class="option-btn" onclick="verificarRespuesta(3, 'fria')">Agua Fría</button>
-                </div>
-            </div>
-
-            <!-- MODAL DE FEEDBACK -->
-            <div class="feedback-modal" id="modal-feedback">
-                <div class="feedback-card">
-                    <div class="feedback-icon" id="fb-icon"></div>
-                    <h2 style="color: #4A1513; font-weight: 800; font-family: 'Playfair Display', serif;" id="fb-title">¡OH NO!</h2>
-                    <p style="color: #555; margin: 1.5rem 0;" id="fb-text">Texto de retroalimentación.</p>
-                    <button class="btn-cata" id="fb-btn">VOLVER A INTENTAR</button>
-                </div>
-            </div>
-
+        <div class="answers-grid">
+          <button class="answer-btn" onclick="verificarRespuesta(1, 'tueste')">El tueste</button>
+          <button class="answer-btn" onclick="verificarRespuesta(1, 'cafeina')">La cafeína</button>
+          <button class="answer-btn" onclick="verificarRespuesta(1, 'agua')">El agua</button>
         </div>
-    </main>
+      </section>
 
-    <footer>
-        <p>© 2026 - Taza Cafetera | Historia, cultura y aprendizaje del café</p>
-    </footer>
+      <!-- MISIÓN 2 -->
+      <section id="screen-mision2" class="cata-screen">
+        <span class="cata-badge">Misión 2: El aroma oculto</span>
+        <h2 class="cata-title">¿En qué frasco se esconde este aroma?</h2>
+        <p class="cata-text">
+          Los cafés de nuestra región suelen destacar por perfiles dulces, florales y afrutados. Elige el aroma más valioso.
+        </p>
 
-    <script src="js/cata-cafetera.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/navbar.js"></script>
+        <div class="answers-grid">
+          <button class="answer-btn" onclick="verificarRespuesta(2, 'ceniza')">Ceniza / humo</button>
+          <button class="answer-btn" onclick="verificarRespuesta(2, 'flor')">Panela y flores</button>
+          <button class="answer-btn" onclick="verificarRespuesta(2, 'madera')">Madera seca</button>
+        </div>
+      </section>
 
+      <!-- MISIÓN 3 -->
+      <section id="screen-mision3" class="cata-screen">
+        <span class="cata-badge">Misión 3: El arte del filtrado</span>
+        <h2 class="cata-title">Para no estropear la magia</h2>
+        <p class="cata-text">
+          Queremos mantener la acidez brillante y la dulzura evitando quemar el café al prepararlo.
+          ¿Cuál es el peor enemigo del sabor en este momento?
+        </p>
 
+        <div class="answers-grid">
+          <button class="answer-btn" onclick="verificarRespuesta(3, 'hirviendo')">Agua hirviendo (con burbujas)</button>
+          <button class="answer-btn" onclick="verificarRespuesta(3, 'caliente')">Agua caliente (antes de hervir)</button>
+          <button class="answer-btn" onclick="verificarRespuesta(3, 'fria')">Agua fría</button>
+        </div>
+      </section>
+
+      <!-- MODAL -->
+      <div id="modal-feedback" class="modal-cata hidden">
+        <div class="modal-cata-card">
+          <div id="fb-icon" class="fb-icon"></div>
+          <h3 id="fb-title"></h3>
+          <p id="fb-text"></p>
+          <button id="fb-btn" class="btn-cata">Continuar</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 - Código Cafetero | Historia, cultura y aprendizaje del café</p>
+  </footer>
+
+  <script>
+    const screenIntro = document.getElementById('screen-intro');
+    const screenMision1 = document.getElementById('screen-mision1');
+    const screenMision2 = document.getElementById('screen-mision2');
+    const screenMision3 = document.getElementById('screen-mision3');
+    const modalFeedback = document.getElementById('modal-feedback');
+
+    const fbIcon = document.getElementById('fb-icon');
+    const fbTitle = document.getElementById('fb-title');
+    const fbText = document.getElementById('fb-text');
+    const fbBtn = document.getElementById('fb-btn');
+    const coffeeLiquid = document.getElementById('coffee-liquid');
+
+    let isSliderMoved = false;
+
+    function iniciarJuego() {
+      screenIntro.classList.remove('active');
+      screenMision1.classList.add('active');
+    }
+
+    function actualizarCafe(valor) {
+      isSliderMoved = true;
+
+      const r = Math.floor(195 - (valor / 100) * 169);
+      const g = Math.floor(154 - (valor / 100) * 139);
+      const b = Math.floor(107 - (valor / 100) * 97);
+
+      coffeeLiquid.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function verificarRespuesta(mision, respuesta) {
+      if (mision === 1) {
+        if (!isSliderMoved && respuesta === 'tueste') {
+          mostrarFeedback(false, "Antes de responder, mueve el control para ver cómo cambia la bebida.", () => cerrarModal());
+          return;
+        }
+
+        if (respuesta === 'tueste') {
+          mostrarFeedback(true, "¡Exacto! La sensación de café 'cargado' o muy amargo suele relacionarse con un tueste oscuro.", () => avanzar(2));
+        } else if (respuesta === 'cafeina') {
+          mostrarFeedback(false, "Muchos creen eso, pero la cafeína no define por sí sola la sensación de cuerpo o contundencia.", () => cerrarModal());
+        } else {
+          mostrarFeedback(false, "El agua influye en la preparación, pero aquí la clave está en el tueste.", () => cerrarModal());
+        }
+      }
+
+      else if (mision === 2) {
+        if (respuesta === 'flor') {
+          mostrarFeedback(true, "¡Magnífico! Los cafés finos de nuestra región suelen destacar por notas florales, dulces y afrutadas.", () => avanzar(3));
+        } else if (respuesta === 'ceniza') {
+          mostrarFeedback(false, "Ese olor aparece cuando el café se quema o se tuesta mal. Un buen café no debe saber a quemado.", () => cerrarModal());
+        } else {
+          mostrarFeedback(false, "La madera seca puede indicar granos viejos o mal almacenados. Buscamos un perfil más vivo y dulce.", () => cerrarModal());
+        }
+      }
+
+      else if (mision === 3) {
+        if (respuesta === 'hirviendo') {
+          mostrarFeedback(true, "¡Correcto! El agua hirviendo destruye aromas y deja un sabor más amargo. Lo ideal es usar agua bien caliente, antes de hervir.", finalizarJuego);
+        } else if (respuesta === 'caliente') {
+          mostrarFeedback(false, "Esa es justamente la temperatura ideal. Buscamos al enemigo del sabor, no al aliado.", () => cerrarModal());
+        } else {
+          mostrarFeedback(false, "El agua fría no quema el café. Incluso existe el café preparado en frío.", () => cerrarModal());
+        }
+      }
+    }
+
+    function mostrarFeedback(acierto, mensaje, accionOnClick) {
+      fbIcon.innerText = acierto ? "✓" : "✕";
+      fbTitle.innerText = acierto ? "¡Excelente!" : "Casi...";
+      fbText.innerText = mensaje;
+
+      if (acierto) {
+        fbBtn.innerText = "Siguiente";
+        fbBtn.className = "btn-cata";
+      } else {
+        fbBtn.innerText = "Volver a intentar";
+        fbBtn.className = "btn-cata";
+      }
+
+      fbBtn.onclick = accionOnClick;
+      modalFeedback.classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+      modalFeedback.classList.add('hidden');
+    }
+
+    function avanzar(siguienteMision) {
+      cerrarModal();
+
+      if (siguienteMision === 2) {
+        screenMision1.classList.remove('active');
+        screenMision2.classList.add('active');
+      } else if (siguienteMision === 3) {
+        screenMision2.classList.remove('active');
+        screenMision3.classList.add('active');
+      }
+    }
+
+    function finalizarJuego() {
+      fbIcon.innerText = "★";
+      fbTitle.innerText = "¡Cata completada!";
+      fbText.innerText = "¡Enhorabuena! Has demostrado tener un paladar más atento. Ahora sabes distinguir mejor qué le da intensidad al café y qué aromas buscar.";
+      fbBtn.innerText = "Volver a Actividades";
+      fbBtn.className = "btn-cata";
+      fbBtn.onclick = () => window.location.href = "actividades.html";
+      modalFeedback.classList.remove('hidden');
+    }
+  </script>
 </body>
-
 </html>
