@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construcción: Estructura HTML - Katurro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #FFF2DC;
+      color: #4A1513;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .katurro-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 0;
+    }
+
+    .volver-actividades {
+      display: inline-block;
+      text-decoration: none;
+      background: #7B1E1E;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(74, 21, 19, 0.18);
+      transition: 0.25s ease;
+    }
+
+    .volver-actividades:hover {
+      background: #4A1513;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .titulo-actividad-individual {
+      text-align: center;
+      margin: 24px auto 8px;
+    }
+
+    .titulo-actividad-individual span {
+      color: #D8A45F;
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .titulo-actividad-individual h1 {
+      font-family: 'Playfair Display', serif;
+      color: #4A1513;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      margin: 8px 0 0;
+    }
+
+    main.container {
+      max-width: 1100px;
+      padding-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="katurro-top">
+    <a class="volver-actividades" href="../actividades.html">← Volver a Actividades</a>
+
+    <div class="titulo-actividad-individual">
+      <span>Actividad interactiva</span>
+      <h1>Construcción: Estructura HTML</h1>
+    </div>
+  </div>
+
+  <main class="container my-5">
+<!-- ACTIVIDAD 08: ARMA LA ESTRUCTURA DE UNA PÁGINA HTML -->
+<style>
+.ak8b-section{margin-top:4rem;padding:2.3rem;border-radius:28px;background:linear-gradient(135deg,#FFF8EA,#FBEED7);box-shadow:0 12px 30px rgba(74,21,19,.16);font-family:'Poppins',Arial,sans-serif}
+.ak8b-header{text-align:center;max-width:850px;margin:0 auto 2rem}
+.ak8b-header h2{color:#4A1513;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800}
+.ak8b-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ak8b-box{background:#fff;border-radius:20px;padding:1rem;border:2px solid #E4C79B;min-height:270px}
+.ak8b-box h3{color:#6F1D1B;font-size:1.15rem;font-weight:900}
+.ak8b-item{background:#FFF8EA;border:2px solid #D8B982;border-radius:14px;padding:.75rem;margin:.55rem 0;color:#4A1513;font-weight:900;cursor:pointer;font-family:monospace}
+.ak8b-item:hover{background:#f3d7a7;transform:scale(1.01)}
+.ak8b-controls{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+.ak8b-controls button{background:#6F1D1B;color:white;border:none;border-radius:12px;padding:.8rem 1rem;font-weight:900;cursor:pointer}
+.ak8b-feedback{margin-top:1rem;background:#fff;border-radius:14px;padding:1rem;color:#4A1513;font-weight:900}
+@media(max-width:768px){.ak8b-grid{grid-template-columns:1fr}}
+</style>
+
+<section class="ak8b-section" id="arma-estructura-html">
+  <div class="ak8b-header">
+    <h2>🏗️ Arma la estructura HTML</h2>
+    <p>Haz clic en las partes del código en el orden correcto para construir una página web básica sobre el café.</p>
+  </div>
+  <div class="ak8b-grid">
+    <div class="ak8b-box">
+      <h3>Partes disponibles</h3>
+      <div id="ak8bBanco"></div>
+    </div>
+    <div class="ak8b-box">
+      <h3>Orden de la página</h3>
+      <div id="ak8bRespuesta"></div>
+    </div>
+  </div>
+  <div class="ak8b-controls">
+    <button id="ak8bRevisar">Revisar estructura</button>
+    <button id="ak8bReiniciar">Reiniciar</button>
+  </div>
+  <div class="ak8b-feedback" id="ak8bFeedback">Selecciona primero la línea que debe ir al inicio.</div>
+</section>
+
+<script>
+(function(){
+const correcto=["<!DOCTYPE html>","<html>","<head>","<title>Katurro Café</title>","</head>","<body>","<h1>Proceso del café</h1>","<p>De la semilla a la taza.</p>","</body>","</html>"];
+let disponibles=[...correcto].sort(()=>Math.random()-.5), elegidas=[];
+const banco=document.getElementById("ak8bBanco"), respuesta=document.getElementById("ak8bRespuesta"), feedback=document.getElementById("ak8bFeedback");
+function render(){
+  banco.innerHTML=""; respuesta.innerHTML="";
+  disponibles.forEach((linea,i)=>{
+    const div=document.createElement("div");
+    div.className="ak8b-item"; div.textContent=linea;
+    div.onclick=()=>{elegidas.push(linea); disponibles.splice(i,1); render();};
+    banco.appendChild(div);
+  });
+  elegidas.forEach((linea,i)=>{
+    const div=document.createElement("div");
+    div.className="ak8b-item"; div.textContent=(i+1)+". "+linea;
+    div.onclick=()=>{disponibles.push(linea); elegidas.splice(i,1); render();};
+    respuesta.appendChild(div);
+  });
+}
+document.getElementById("ak8bRevisar").onclick=()=>{
+  if(elegidas.length!==correcto.length){feedback.textContent="⚠️ Todavía faltan líneas por ubicar.";return;}
+  const ok=elegidas.every((x,i)=>x===correcto[i]);
+  feedback.textContent=ok?"✅ Excelente. La estructura HTML está ordenada correctamente.":"❌ Hay líneas fuera de orden. Recuerda: doctype, html, head, body y contenido visible.";
+};
+document.getElementById("ak8bReiniciar").onclick=()=>{disponibles=[...correcto].sort(()=>Math.random()-.5);elegidas=[];feedback.textContent="Selecciona primero la línea que debe ir al inicio.";render();};
+render();
+})();
+</script>
+
+  </main>
+</body>
+</html>

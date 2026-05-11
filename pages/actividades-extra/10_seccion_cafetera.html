@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseño: Sección Cafetera - Katurro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #FFF2DC;
+      color: #4A1513;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .katurro-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 0;
+    }
+
+    .volver-actividades {
+      display: inline-block;
+      text-decoration: none;
+      background: #7B1E1E;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(74, 21, 19, 0.18);
+      transition: 0.25s ease;
+    }
+
+    .volver-actividades:hover {
+      background: #4A1513;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .titulo-actividad-individual {
+      text-align: center;
+      margin: 24px auto 8px;
+    }
+
+    .titulo-actividad-individual span {
+      color: #D8A45F;
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .titulo-actividad-individual h1 {
+      font-family: 'Playfair Display', serif;
+      color: #4A1513;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      margin: 8px 0 0;
+    }
+
+    main.container {
+      max-width: 1100px;
+      padding-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="katurro-top">
+    <a class="volver-actividades" href="../actividades.html">← Volver a Actividades</a>
+
+    <div class="titulo-actividad-individual">
+      <span>Actividad interactiva</span>
+      <h1>Diseño: Sección Cafetera</h1>
+    </div>
+  </div>
+
+  <main class="container my-5">
+<!-- ACTIVIDAD 10: ORGANIZA UNA SECCIÓN DEL PROCESO DEL CAFÉ -->
+<style>
+.ak10-section{margin-top:4rem;padding:2.3rem;border-radius:28px;background:linear-gradient(135deg,#FFF8EA,#FBEED7);box-shadow:0 12px 30px rgba(74,21,19,.16);font-family:'Poppins',Arial,sans-serif}
+.ak10-header{text-align:center;max-width:850px;margin:0 auto 2rem}
+.ak10-header h2{color:#4A1513;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800}
+.ak10-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ak10-box{background:#fff;border-radius:20px;padding:1rem;border:2px solid #E4C79B;min-height:250px}
+.ak10-box h3{color:#6F1D1B;font-size:1.15rem;font-weight:900}
+.ak10-item{background:#FFF8EA;border:2px solid #D8B982;border-radius:14px;padding:.75rem;margin:.55rem 0;color:#4A1513;font-weight:900;cursor:pointer;font-family:monospace}
+.ak10-item:hover{background:#f3d7a7;transform:scale(1.01)}
+.ak10-controls{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+.ak10-controls button{background:#6F1D1B;color:white;border:none;border-radius:12px;padding:.8rem 1rem;font-weight:900;cursor:pointer}
+.ak10-feedback{margin-top:1rem;background:#fff;border-radius:14px;padding:1rem;color:#4A1513;font-weight:900}
+@media(max-width:768px){.ak10-grid{grid-template-columns:1fr}}
+</style>
+
+<section class="ak10-section" id="organiza-seccion-cafe">
+  <div class="ak10-header">
+    <h2>🧱 Organiza una sección cafetera</h2>
+    <p>Arma una sección correcta: primero título, luego explicación, imagen y botón.</p>
+  </div>
+  <div class="ak10-grid">
+    <div class="ak10-box">
+      <h3>Elementos sueltos</h3>
+      <div id="ak10Banco"></div>
+    </div>
+    <div class="ak10-box">
+      <h3>Sección organizada</h3>
+      <div id="ak10Respuesta"></div>
+    </div>
+  </div>
+  <div class="ak10-controls">
+    <button id="ak10Revisar">Revisar sección</button>
+    <button id="ak10Reiniciar">Reiniciar</button>
+  </div>
+  <div class="ak10-feedback" id="ak10Feedback">Selecciona el elemento que debe ir primero.</div>
+</section>
+
+<script>
+(function(){
+const correcto=[
+"<section>",
+"<h2>Secado del café</h2>",
+"<p>Los granos se secan para reducir la humedad.</p>",
+'<img src="../assets/images/secado.jpg" alt="Secado del café">',
+"<button>Ver más</button>",
+"</section>"
+];
+let disponibles=[...correcto].sort(()=>Math.random()-.5), elegidas=[];
+const banco=document.getElementById("ak10Banco"), resp=document.getElementById("ak10Respuesta"), fb=document.getElementById("ak10Feedback");
+function render(){
+  banco.innerHTML="";resp.innerHTML="";
+  disponibles.forEach((x,i)=>{const d=document.createElement("div");d.className="ak10-item";d.textContent=x;d.onclick=()=>{elegidas.push(x);disponibles.splice(i,1);render();};banco.appendChild(d);});
+  elegidas.forEach((x,i)=>{const d=document.createElement("div");d.className="ak10-item";d.textContent=(i+1)+". "+x;d.onclick=()=>{disponibles.push(x);elegidas.splice(i,1);render();};resp.appendChild(d);});
+}
+document.getElementById("ak10Revisar").onclick=()=>{if(elegidas.length!==correcto.length){fb.textContent="⚠️ Falta completar la sección.";return;}const ok=elegidas.every((x,i)=>x===correcto[i]);fb.textContent=ok?"✅ Muy bien. La sección está organizada correctamente.":"❌ Revisa el orden: section, título, párrafo, imagen, botón y cierre.";};
+document.getElementById("ak10Reiniciar").onclick=()=>{disponibles=[...correcto].sort(()=>Math.random()-.5);elegidas=[];fb.textContent="Selecciona el elemento que debe ir primero.";render();};
+render();
+})();
+</script>
+
+  </main>
+</body>
+</html>

@@ -145,6 +145,156 @@
       </div>
 
     </div>
+
+
+<!-- =========================================================
+MENÚ DE ACTIVIDADES INDIVIDUALES KATURRO
+Pegar este bloque en pages/actividades.html.
+Cada botón abre su propia actividad en pages/actividades-extra/
+========================================================= -->
+
+<style>
+  .menu-actividades-katurro {
+    padding: 30px 0 50px;
+  }
+
+  .actividades-grid-katurro {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    gap: 24px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .actividad-card-katurro {
+    background: rgba(255, 248, 234, 0.62);
+    border: 1px solid rgba(111, 29, 27, 0.08);
+    border-radius: 22px;
+    padding: 28px 24px 22px;
+    text-align: center;
+    min-height: 265px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 18px rgba(74, 21, 19, 0.06);
+    transition: 0.25s ease;
+  }
+
+  .actividad-card-katurro:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(74, 21, 19, 0.13);
+  }
+
+  .actividad-card-katurro h3 {
+    font-family: 'Playfair Display', serif;
+    color: #5A1716;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .actividad-card-katurro p {
+    color: #5f4b3f;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .actividad-card-katurro a {
+    display: block;
+    width: 100%;
+    background: #7B1E1E;
+    color: #ffffff;
+    border-radius: 11px;
+    padding: 11px 14px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.25s ease;
+  }
+
+  .actividad-card-katurro a:hover {
+    background: #4A1513;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 992px) {
+    .actividades-grid-katurro {
+      grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .actividades-grid-katurro {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="menu-actividades-katurro">
+  <div class="actividades-grid-katurro">
+        <div class="actividad-card-katurro">
+          <h3>Reto:<br>Corrige el Código</h3>
+          <p>Observa fragmentos HTML con errores, descubre qué falla y elige la corrección adecuada.</p>
+          <a href="actividades-extra/01_reto_del_cafetero.html">Empezar Reto</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Proceso:<br>Ordena el Café</h3>
+          <p>Organiza las etapas del café desde la siembra hasta la taza final.</p>
+          <a href="actividades-extra/02_ordena_el_proceso.html">Ordenar Etapas</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Juego:<br>Memoria HTML</h3>
+          <p>Relaciona cada etiqueta HTML con su función dentro de la página.</p>
+          <a href="actividades-extra/03_memoria_html.html">Jugar Memoria</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Reto:<br>Clasifica Elementos</h3>
+          <p>Distingue qué elementos se ven en la página y cuáles pertenecen a la estructura interna.</p>
+          <a href="actividades-extra/04_clasifica_elementos.html">Clasificar</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Prueba:<br>Verdadero o Falso</h3>
+          <p>Responde afirmaciones rápidas sobre HTML y el proceso del café.</p>
+          <a href="actividades-extra/05_verdadero_falso.html">Iniciar Prueba</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Actividad:<br>Código y Resultado</h3>
+          <p>Une líneas de código HTML con lo que muestran visualmente en la página.</p>
+          <a href="actividades-extra/06_une_codigo_visual.html">Unir Parejas</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Laboratorio:<br>Errores HTML</h3>
+          <p>Escribe la corrección de errores comunes relacionados con imágenes, botones y etiquetas.</p>
+          <a href="actividades-extra/07_laboratorio_errores.html">Entrar al Laboratorio</a>
+        </div>
+
+        <div class="actividad-card-katurro">
+          <h3>Detective:<br>Imágenes del Café</h3>
+          <p>Encuentra por qué algunas imágenes cafeteras no aparecen correctamente.</p>
+          <a href="actividades-extra/09_detective_imagenes.html">Resolver Casos</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Diseño:<br>Sección Cafetera</h3>
+          <p>Ordena título, texto, imagen y botón para crear una sección clara.</p>
+          <a href="actividades-extra/10_seccion_cafetera.html">Organizar</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Evaluación:<br>Mini Katurro</h3>
+          <p>Contesta preguntas mezcladas sobre el café y etiquetas HTML básicas.</p>
+          <a href="actividades-extra/11_mini_evaluacion.html">Responder</a>
+        </div>
+        <div class="actividad-card-katurro">
+          <h3>Reto:<br>Rutas y Archivos</h3>
+          <p>Elige rutas correctas para conectar páginas e imágenes dentro del proyecto.</p>
+          <a href="actividades-extra/12_rutas_archivos.html">Practicar Rutas</a>
+        </div>
+  </div>
+</section>
+    
   </main>
 
   <footer>

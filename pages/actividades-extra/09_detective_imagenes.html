@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detective: Imágenes del Café - Katurro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #FFF2DC;
+      color: #4A1513;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .katurro-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 0;
+    }
+
+    .volver-actividades {
+      display: inline-block;
+      text-decoration: none;
+      background: #7B1E1E;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(74, 21, 19, 0.18);
+      transition: 0.25s ease;
+    }
+
+    .volver-actividades:hover {
+      background: #4A1513;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .titulo-actividad-individual {
+      text-align: center;
+      margin: 24px auto 8px;
+    }
+
+    .titulo-actividad-individual span {
+      color: #D8A45F;
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .titulo-actividad-individual h1 {
+      font-family: 'Playfair Display', serif;
+      color: #4A1513;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      margin: 8px 0 0;
+    }
+
+    main.container {
+      max-width: 1100px;
+      padding-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="katurro-top">
+    <a class="volver-actividades" href="../actividades.html">← Volver a Actividades</a>
+
+    <div class="titulo-actividad-individual">
+      <span>Actividad interactiva</span>
+      <h1>Detective: Imágenes del Café</h1>
+    </div>
+  </div>
+
+  <main class="container my-5">
+<!-- ACTIVIDAD 09: DETECTIVE DE IMÁGENES DEL CAFÉ -->
+<style>
+.ak9-section{margin-top:4rem;padding:2.3rem;border-radius:28px;background:#FBEED7;box-shadow:0 12px 30px rgba(74,21,19,.16);font-family:'Poppins',Arial,sans-serif}
+.ak9-header{text-align:center;max-width:850px;margin:0 auto 2rem}
+.ak9-header h2{color:#4A1513;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800}
+.ak9-card{background:#fff;border-radius:22px;padding:1.5rem;border-left:8px solid #6F1D1B;color:#4A1513}
+.ak9-code{background:#24110f;color:#ffe9bf;padding:1rem;border-radius:14px;overflow-x:auto;font-size:1rem}
+.ak9-options{display:grid;gap:.8rem;margin-top:1rem}
+.ak9-options button,.ak9-next{background:#FFF8EA;color:#4A1513;border:2px solid #D8B982;border-radius:14px;padding:.85rem;font-weight:900;cursor:pointer;text-align:left}
+.ak9-options button:hover{background:#f3d7a7}
+.ak9-options button.good{background:#e9ffe9;border-color:#237a2a}
+.ak9-options button.bad{background:#ffe8e8;border-color:#a01818}
+.ak9-next{background:#6F1D1B;color:#fff;text-align:center;margin-top:1rem;border:none}
+.ak9-feedback{margin-top:1rem;background:#FFF8EA;border-radius:14px;padding:1rem;font-weight:900}
+.ak9-score{margin-top:1rem;color:#6F1D1B;font-weight:900}
+</style>
+
+<section class="ak9-section" id="detective-imagenes-cafe">
+  <div class="ak9-header">
+    <h2>🕵️ Detective de imágenes del café</h2>
+    <p>Revisa cada línea de imagen y descubre por qué la fotografía del café no aparece correctamente.</p>
+  </div>
+  <div class="ak9-card">
+    <h3 id="ak9Pregunta"></h3>
+    <pre class="ak9-code"><code id="ak9Codigo"></code></pre>
+    <div class="ak9-options" id="ak9Opciones"></div>
+    <div class="ak9-feedback" id="ak9Feedback">Elige el error correcto.</div>
+    <button class="ak9-next" id="ak9Next">Siguiente caso</button>
+    <div class="ak9-score">Aciertos: <span id="ak9Score">0</span></div>
+  </div>
+</section>
+
+<script>
+(function(){
+const casos=[
+{p:"Caso 1: No carga la imagen de la cosecha.",c:'<img scr="../assets/images/cosecha.jpg" alt="Cosecha">',o:["Está escrito scr en vez de src","El alt está prohibido","img debe cerrarse con </img>"],r:0,e:"El atributo correcto es src."},
+{p:"Caso 2: La ruta parece incompleta.",c:'<img src="cafe.jpg" alt="Granos de café">',o:["Puede faltar la carpeta donde está la imagen","La etiqueta h1 está mal","Debe llevar dos src"],r:0,e:"Si la imagen está en assets/images, la ruta debe apuntar a esa carpeta."},
+{p:"Caso 3: Falta una descripción útil.",c:'<img src="../assets/images/secado.jpg" alt="">',o:["El atributo alt está vacío","El src siempre debe estar vacío","La imagen no puede estar en jpg"],r:0,e:"El alt ayuda a describir la imagen si no carga o si se usa lector de pantalla."},
+{p:"Caso 4: La etiqueta está mal escrita.",c:'<imagen src="../assets/images/tostion.jpg" alt="Tostión">',o:["Debe usarse img, no imagen","Debe usarse p, no imagen","La ruta debe decir scr"],r:0,e:"En HTML la etiqueta para imágenes es img."}
+];
+let i=0,score=0,answered=false;
+const q=document.getElementById("ak9Pregunta"),code=document.getElementById("ak9Codigo"),ops=document.getElementById("ak9Opciones"),fb=document.getElementById("ak9Feedback"),sc=document.getElementById("ak9Score");
+function load(){answered=false;q.textContent=casos[i].p;code.textContent=casos[i].c;fb.textContent="Elige el error correcto.";ops.innerHTML="";casos[i].o.forEach((op,idx)=>{const b=document.createElement("button");b.textContent=op;b.onclick=()=>check(idx,b);ops.appendChild(b);});}
+function check(idx,b){if(answered)return;answered=true;[...ops.children].forEach((x,k)=>{x.disabled=true;if(k===casos[i].r)x.classList.add("good");});if(idx===casos[i].r){score++;sc.textContent=score;fb.textContent="✅ "+casos[i].e;}else{b.classList.add("bad");fb.textContent="❌ Revisa. "+casos[i].e;}}
+document.getElementById("ak9Next").onclick=()=>{i++;if(i>=casos.length){fb.textContent="🏁 Actividad terminada. Aciertos: "+score+" de "+casos.length+".";i=0;score=0;sc.textContent=0;}else load();};
+load();
+})();
+</script>
+
+  </main>
+</body>
+</html>
