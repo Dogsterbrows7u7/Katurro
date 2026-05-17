@@ -181,6 +181,63 @@
       margin-bottom: 0.7rem;
     }
 
+    .katurro-apoyo-bloque {
+      margin-top: 2.5rem;
+    }
+
+    .katurro-apoyo-bloque:first-of-type {
+      margin-top: 0;
+    }
+
+    .katurro-apoyo-subtitulo {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(70, 45, 25, 0.14);
+    }
+
+    .katurro-apoyo-subtitulo h3 {
+      color: var(--verde);
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .katurro-apoyo-subtitulo p {
+      max-width: 520px;
+      margin: 0;
+      color: #5f4a3c;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .katurro-pdf-bloque {
+      margin-top: 3rem;
+      padding-top: 2.2rem;
+      border-top: 2px dashed rgba(49, 92, 43, 0.25);
+    }
+
+    .katurro-pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .katurro-pdf-grid .katurro-pdf-card {
+      min-height: 280px;
+    }
+
+    @media (max-width: 768px) {
+      .katurro-apoyo-subtitulo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .katurro-extra-section {
         padding: 2rem 1rem;
@@ -619,8 +676,19 @@
       </p>
     </div>
 
-    <div class="katurro-apoyo-grid">
+    <div class="katurro-apoyo-bloque">
+      <div class="katurro-apoyo-subtitulo">
+        <div>
+          <span class="katurro-chip"><i class="bi bi-play-circle-fill"></i> Videos de apoyo</span>
+          <h3>Material audiovisual</h3>
+        </div>
+        <p>
+          Estos videos complementan la explicación de la cultura cafetera, las comunidades,
+          la cotidianidad, la tradición y la identidad regional.
+        </p>
+      </div>
 
+      <div class="katurro-apoyo-grid katurro-video-grid-separado">
       <article class="katurro-apoyo-card">
         <span class="katurro-chip"><i class="bi bi-play-circle-fill"></i> El grano</span>
         <div class="katurro-video-box">
@@ -632,15 +700,6 @@
         </div>
         <h3>Cultivo, variedades y cuidado del café</h3>
         <p>Apoyo para explicar el grano, las variedades y los cuidados del cultivo cafetero.</p>
-      </article>
-      <article class="katurro-apoyo-card katurro-pdf-card">
-        <div>
-          <div class="katurro-pdf-icon"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-          <span class="katurro-chip" style="background: rgba(255,255,255,0.18); color: #fff;"><i class="bi bi-journal-text"></i> PDF de apoyo</span>
-          <h3>PDF de apoyo: variedades y cuidado del café</h3>
-          <p>Documento complementario sobre el cultivo, la planta, variedades y manejo del café.</p>
-        </div>
-        <a href="https://share.google/57xS4bmbANTbAJl8H" target="_blank" class="katurro-boton-link">Abrir PDF <i class="bi bi-box-arrow-up-right"></i></a>
       </article>
       <article class="katurro-apoyo-card">
         <span class="katurro-chip"><i class="bi bi-play-circle-fill"></i> Comunidades</span>
@@ -738,6 +797,32 @@
         <h3>Orgullo e identidad del café</h3>
         <p>Complementa la idea del café como herencia, trabajo y memoria colectiva.</p>
       </article>
+      </div>
+    </div>
+
+    <div class="katurro-apoyo-bloque katurro-pdf-bloque">
+      <div class="katurro-apoyo-subtitulo">
+        <div>
+          <span class="katurro-chip"><i class="bi bi-file-earmark-pdf-fill"></i> Documentos PDF</span>
+          <h3>Lecturas de apoyo</h3>
+        </div>
+        <p>
+          Aquí quedan separados los documentos para que no se mezclen con los videos.
+          Úsalos como material de consulta o respaldo.
+        </p>
+      </div>
+
+      <div class="katurro-pdf-grid">
+      <article class="katurro-apoyo-card katurro-pdf-card">
+        <div>
+          <div class="katurro-pdf-icon"><i class="bi bi-file-earmark-pdf-fill"></i></div>
+          <span class="katurro-chip" style="background: rgba(255,255,255,0.18); color: #fff;"><i class="bi bi-journal-text"></i> PDF de apoyo</span>
+          <h3>PDF de apoyo: variedades y cuidado del café</h3>
+          <p>Documento complementario sobre el cultivo, la planta, variedades y manejo del café.</p>
+        </div>
+        <a href="https://share.google/57xS4bmbANTbAJl8H" target="_blank" class="katurro-boton-link">Abrir PDF <i class="bi bi-box-arrow-up-right"></i></a>
+      </article>
+      </div>
     </div>
   </section>
 
